@@ -2,14 +2,15 @@
 const shell = require('shelljs');
 const path = require('path');
 
-shell.mkdir('-p', 'cypress/webspace');
-shell.cp(path.join(__dirname, '../cypress/webspace/composer.json'), './cypress/webspace/');
+shell.cp('-R', path.join(__dirname, '../cypress'), '.');
+shell.cd('cypress');
 
-shell.rm('-rf', 'cypress/webspace/vendor/contao/manager-bundle');
-shell.exec('composer up --working-dir=cypress/webspace');
+shell.rm('-rf', 'webspace/vendor/contao/manager-bundle');
+shell.exec('composer up --working-dir=webspace --no-progress');
 
 shell.exec('export COOKIE_ALLOW_LIST=PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME');
 
-shell.exec('symfony server:start --port=8765 --dir=cypress/webspace --daemon');
+shell.exec('symfony server:start --port=8765 --dir=webspace --daemon');
+shell.exec('yarn add cypress --dev');
 shell.exec('yarn cypress run');
-shell.exec('symfony server:stop --dir=cypress/webspace');
+shell.exec('symfony server:stop --dir=webspace');
