@@ -1,0 +1,20 @@
+{
+    "name": "contao-e2e-tests",
+    "version": "1.0.0",
+    "license": "LGPL-3.0-or-later",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/contao/e2e-tests.git"
+    },
+    "description": "End-to-end tests for Contao",
+    "dependencies": {
+        "cypress": "^13.7.3",
+        "shelljs": "^0.8.5"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "bin": {
+        "contao-e2e-tests": "bin/contao-e2e-tests"
+    }
+}

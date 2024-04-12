@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+const shell = require('shelljs');
+const path = require('path');
+
+shell.mkdir('-p', 'cypress/webspace');
+shell.cp(path.join(__dirname, '../cypress/webspace/composer.json'), './cypress/webspace/');
+
+shell.rm('-rf', 'cypress/webspace/vendor/contao/manager-bundle');
+shell.exec('composer up --working-dir=cypress/webspace');
+
+shell.exec('export COOKIE_ALLOW_LIST=PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME');
+
+shell.exec('symfony server:start --port=8765 --dir=cypress/webspace --daemon');
+shell.exec('yarn cypress run');
+shell.exec('symfony server:stop --dir=cypress/webspace');
