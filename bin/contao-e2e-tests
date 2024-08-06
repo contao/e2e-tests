@@ -11,6 +11,6 @@ shell.exec('composer up --working-dir=webspace --no-progress');
 shell.exec('export COOKIE_ALLOW_LIST=PHPSESSID,csrf_https-contao_csrf_token,csrf_contao_csrf_token,trusted_device,REMEMBERME');
 
 shell.exec('symfony server:start --port=8765 --dir=webspace --daemon');
-shell.exec('yarn add cypress --dev');
-shell.exec('yarn cypress run');
+shell.exec('npm install cypress --save-dev');
+shell.exec('npx cypress run');
 shell.exec('symfony server:stop --dir=webspace');

@@ -4,16 +4,16 @@ This package includes end-to-end tests for [Contao][1].
 
 ## Usage
 
-Add the package to your Contao installation via Yarn:
+Add the package to your Contao installation:
 
 ```bash
-yarn add contao-e2e-tests --dev
+npm install contao-e2e-tests --save-dev
 ```
 
 Then run the tests like this:
 
 ```bash
-yarn contao-e2e-tests
+npx contao-e2e-tests
 ```
 
 ## License
